@@ -41,9 +41,9 @@ export class CounterApp extends DDDSuper(I18NMixin(LitElement)) {
   static get properties() {
     return {
       ...super.properties,
-      count: { type: Number, reflect: True},
-      min: {type: Number},
-      max: {type: Number},
+      count: { type: Number, reflect: true},
+      min: { type: Number },
+      max: { type: Number },
     };
   }
 
@@ -77,7 +77,7 @@ export class CounterApp extends DDDSuper(I18NMixin(LitElement)) {
     if (changedProperties.has("count")) {
       console.log("count changed to: ", this.count);
       if (this.count === 21) {
-        this.makeItRain
+        this.makeItRain();
       }
     }
   }
@@ -105,13 +105,14 @@ export class CounterApp extends DDDSuper(I18NMixin(LitElement)) {
   // Lit render the HTML
   render() {
     return html`
-      <confetti-container id="confetti" class="wrapper">
+      <confetti-container>
       <div class="counter">${this.count}</div>
       <div class="buttons">
-          <button @click="${this.increase}" ?disabled="${this.count === this.min}">-1</button>
-          <button @click="${this.increase}" ?disabled="${this.count === this.max}">+1</button>
+        <button @click="${this.decrease}">-1</button>
+        <button @click="${this.increase}">+1</button>
       </div>
-      </confetti-container>`;
+    </confetti-container>
+    `;
   }
 
   increase() {
@@ -120,6 +121,10 @@ export class CounterApp extends DDDSuper(I18NMixin(LitElement)) {
 
   decrease() {
     this.count--;
+  }
+
+  reset() {
+    this.count = 0;
   }
 
   /**
