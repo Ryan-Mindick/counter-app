@@ -105,7 +105,7 @@ export class CounterApp extends DDDSuper(I18NMixin(LitElement)) {
   // Lit render the HTML
   render() {
     return html`
-      <confetti-container>
+      <confetti-container id="confetti">
       <div class="counter">${this.count}</div>
       <div class="buttons">
         <button @click="${this.decrease}" ?disabled="${this.min === this.count}">-1</button>
