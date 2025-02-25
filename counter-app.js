@@ -42,8 +42,8 @@ export class CounterApp extends DDDSuper(I18NMixin(LitElement)) {
     return {
       ...super.properties,
       count: { type: Number, reflect: true},
-      min: { type: Number },
-      max: { type: Number },
+      min: { type: Number, reflect: true},
+      max: { type: Number, reflect: true },
     };
   }
 
@@ -108,8 +108,9 @@ export class CounterApp extends DDDSuper(I18NMixin(LitElement)) {
       <confetti-container>
       <div class="counter">${this.count}</div>
       <div class="buttons">
-        <button @click="${this.decrease}">-1</button>
-        <button @click="${this.increase}">+1</button>
+        <button @click="${this.decrease}" ?disabled="${this.min === this.count}">-1</button>
+        <button @click="${this.reset}">Reset</button>
+        <button @click="${this.increase}" ?disabled="${this.max === this.count}">+1</button>
       </div>
     </confetti-container>
     `;
